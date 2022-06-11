@@ -2,7 +2,7 @@ import { useEffect, useReducer, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import logger from 'use-reducer-logger'
-//todo add bootstrap
+//todo add bootstrap 1:25:40
 const reducer = (state, action) => {
   switch (action.type) {
     case 'FETCH_REQUEST':
