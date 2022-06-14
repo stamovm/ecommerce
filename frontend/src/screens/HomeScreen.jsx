@@ -1,9 +1,9 @@
-import { useEffect, useReducer, useState } from 'react'
-import axios from 'axios'
-import logger from 'use-reducer-logger'
+import { useEffect, useReducer } from 'react'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Product from '../components/Product'
+import axios from 'axios'
+import { Helmet } from 'react-helmet-async'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -17,8 +17,7 @@ const reducer = (state, action) => {
 }
 
 export default function HomeScreen() {
-  // const [products, setProducts] = useState([])
-  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
     products: [],
     loading: true,
     error: '',
@@ -33,14 +32,15 @@ export default function HomeScreen() {
       } catch (error) {
         dispatch({ type: 'FETCH_FAIL', payload: error.message })
       }
-      // setProducts(result.data)
     }
     fetchData()
   }, []) //only run once
 
   return (
     <div>
-      <h2>List of products</h2>
+      <Helmet>
+        <title>Commerce</title>
+      </Helmet>
       <div className="products">
         {loading ? (
           <div>Loading...</div>

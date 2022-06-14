@@ -11,7 +11,7 @@ const Rating = (props) => {
       {[...Array(5)].map((_, i) => {
         const starValue = i + 1
         return (
-          <span>
+          <span key={starValue}>
             {rating >= starValue ? (
               <FontAwesomeIcon icon={faStar} />
             ) : rating >= starValue - 0.5 ? (
