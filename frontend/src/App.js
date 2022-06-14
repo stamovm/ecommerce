@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen.jsx'
 import ProductScreen from './screens/ProductScreen.jsx'
 import Navbar from 'react-bootstrap/Navbar'

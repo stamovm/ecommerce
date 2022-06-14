@@ -36,6 +36,11 @@ main {
   justify-content: center;
 }
 
+.btn-primary {
+  background-color: #f0c039;
+  color: black;
+}
+
 .product {
   border: 1px solid #404040;
   margin: 1rem;
@@ -47,4 +52,8 @@ main {
 }
 .product-info {
   padding: 1rem;
+}
+
+.rating span {
+  color: #f0c039;
 }
