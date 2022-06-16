@@ -4,6 +4,9 @@ import Col from 'react-bootstrap/Col'
 import Product from '../components/Product'
 import axios from 'axios'
 import { Helmet } from 'react-helmet-async'
+import LoadingBox from '../components/LoadingBox'
+import MessageBox from '../components/MessageBox'
+import { getError } from '../utils'
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -11,6 +14,8 @@ const reducer = (state, action) => {
       return { ...state, loading: true }
     case 'FETCH_SUCCESS':
       return { ...state, loading: false, products: action.payload }
+    case 'FETCH_FAIL':
+      return { ...state, loading: false, error: action.payload }
     default:
       return state
   }
@@ -29,8 +34,8 @@ export default function HomeScreen() {
       try {
         const result = await axios.get('/api/products')
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data })
-      } catch (error) {
-        dispatch({ type: 'FETCH_FAIL', payload: error.message })
+      } catch (err) {
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) })
       }
     }
     fetchData()
@@ -43,9 +48,9 @@ export default function HomeScreen() {
       </Helmet>
       <div className="products">
         {loading ? (
-          <div>Loading...</div>
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {products.map((product) => (
